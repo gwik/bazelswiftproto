@@ -1,0 +1,23 @@
+load(
+    "@build_bazel_rules_swift//swift:swift.bzl",
+    "swift_proto_library",
+)
+
+proto_library(
+    name = "someproto_proto",
+    srcs = [
+    	"some.proto"
+    ],
+	deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+# local_repository(
+#     name = "build_bazel_rules_swift",
+#     path = "../rules_swift",
+# )
+
+swift_proto_library(
+    name = "someproto_swift_proto",
+    visibility = ["//visibility:public"],
+    deps = [":someproto_proto"],
+)
